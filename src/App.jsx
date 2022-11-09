@@ -1,4 +1,4 @@
-import useFetch from "./hooks/usefetch";
+import useFetch from "./hooks/use-fetch";
 
 function App() {
   const url = `http://jsonplaceholder.typicode.com/posts`;
