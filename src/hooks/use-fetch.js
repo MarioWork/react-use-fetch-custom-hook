@@ -31,11 +31,14 @@ const useFetch = (url, options) => {
     useEffect(() => {
         if (!url) return;
 
+        const controller = new AbortController();
+        const signal = controller.signal;
+
         const fetchData = async () => {
             try {
                 dispatch({ type: actions.LOADING })
 
-                const response = await fetch(url, options);
+                const response = await fetch(url, { ...options, signal });
 
                 if (!response.ok) {
                     throw new Error(response.statusText);
@@ -46,11 +49,15 @@ const useFetch = (url, options) => {
                 dispatch({ type: actions.FETCHED, payload: data })
 
             } catch (error) {
+                if (error.name == 'AbortError') return;
+
                 dispatch({ type: actions.ERROR, payload: error })
             }
         }
 
         fetchData();
+
+        return () => controller.abort();
 
     }, [url]);
 
