@@ -1,5 +1,9 @@
 import { useEffect, useReducer } from "react"
 
+const errors = {
+    ABORT: 'AbortError'
+}
+
 const actions = {
     LOADING: 'Loading',
     FETCHED: 'Fetched',
@@ -49,7 +53,7 @@ const useFetch = (url, options) => {
                 dispatch({ type: actions.FETCHED, payload: data })
 
             } catch (error) {
-                if (error.name == 'AbortError') return;
+                if (error.name == errors.ABORT) return;
 
                 dispatch({ type: actions.ERROR, payload: error })
             }
