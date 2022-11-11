@@ -1,2 +1,2 @@
 # React useFetch custom hook example
-Simple project with example of useFetch custom hook && to play around with vite  
+Simple project with an example of useFetch custom hook && to play around with vite  
