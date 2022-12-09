@@ -20,11 +20,11 @@ const useFetch = (url, options) => {
     const fetchReducer = (state, action) => {
         switch (action.type) {
             case actions.LOADING:
-                return { ...initialState, isLoading: true };
+                return { ...state, isLoading: true };
             case actions.FETCHED:
-                return { ...initialState, data: action.payload };
+                return { ...state, data: action.payload, isLoading: false };
             case actions.ERROR:
-                return { ...initialState, error: action.payload };
+                return { ...state, error: action.payload, isLoading: false };
             default:
                 return state;
         }
